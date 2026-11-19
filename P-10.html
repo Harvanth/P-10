@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HealthNest - DOM Elements</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f7;
+            margin: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #087f78;
+            color: white;
+            padding: 25px;
+        }
+
+        nav {
+            background-color: #064e49;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        .container {
+            background-color: white;
+            width: 80%;
+            max-width: 500px;
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2,
+        h3 {
+            color: #087f78;
+        }
+
+        button {
+            background-color: #087f78;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #064e49;
+        }
+
+        input {
+            padding: 10px;
+            margin: 8px;
+            width: 80%;
+        }
+
+        footer {
+            background-color: #064e49;
+            color: white;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="title">HealthNest</h1>
+        <p>Preventive Healthcare and Diagnostics</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#appointment">Appointment</a>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="container" id="home">
+        <h2>Welcome to HealthNest</h2>
+
+        <p id="message">
+            Your health is our priority!
+        </p>
+
+        <button onclick="changeMessage()">
+            Click Here
+        </button>
+    </div>
+
+    <!-- Healthcare Services -->
+    <div class="container" id="services">
+        <h2>Our Healthcare Services</h2>
+
+        <h3>Health Checkup</h3>
+        <h3>Medical Diagnostics</h3>
+        <h3>Doctor Consultation</h3>
+
+        <button onclick="showServices()">
+            View Services
+        </button>
+
+        <p id="serviceMessage"></p>
+    </div>
+
+    <!-- Interactive Appointment Form -->
+    <div class="container" id="appointment">
+        <h2>Book an Appointment</h2>
+
+        <form id="healthForm" action="#" method="post">
+
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <input type="date" id="date" required>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <!-- Timer Functions -->
+    <div class="container">
+        <h2>Health Reminder</h2>
+
+        <p id="timerMessage">
+            Stay Healthy and Drink Water!
+        </p>
+
+        <button onclick="startTimeout()">
+            Start Reminder
+        </button>
+
+        <button onclick="stopTimeout()">
+            Stop Reminder
+        </button>
+
+        <button onclick="startInterval()">
+            Start Counter
+        </button>
+
+        <button onclick="stopInterval()">
+            Stop Counter
+        </button>
+
+        <p id="counter">Counter: 0</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 HealthNest. All Rights Reserved.</p>
+        <p>healthnest@gmail.com</p>
+    </footer>
+
+    <script>
+
+        // querySelector 
+        const title = document.querySelector("#title");
+
+        // Button onclick function 
+        function changeMessage() {
+            document.querySelector("#message").innerHTML =
+                "Thank you for choosing HealthNest!";
+        }
+
+        // Display healthcare services 
+        function showServices() {
+            document.querySelector("#serviceMessage").innerHTML =
+                "We provide health checkups, diagnostics and consultation.";
+        }
+
+        // Interactive Form 
+        document.querySelector("#healthForm").addEventListener(
+            "submit", function (event) {
+
+                event.preventDefault();
+
+                let name = document.querySelector("#name").value;
+
+                document.querySelector("#result").innerHTML =
+                    "Thank you " + name +
+                    "! Your appointment request is received.";
+            }
+        );
+
+        // setTimeout() 
+        let timeout;
+
+        function startTimeout() {
+            clearTimeout(timeout);
+
+            document.querySelector("#timerMessage").innerHTML =
+                "Reminder will appear shortly...";
+
+            timeout = setTimeout(function () {
+                document.querySelector("#timerMessage").innerHTML =
+                    "Time to drink water! Stay hydrated.";
+            }, 3000);
+        }
+
+        // clearTimeout() 
+        function stopTimeout() {
+            clearTimeout(timeout);
+
+            document.querySelector("#timerMessage").innerHTML =
+                "Reminder stopped.";
+        }
+
+        // setInterval() 
+        let interval;
+        let count = 0;
+
+        function startInterval() {
+            clearInterval(interval);
+
+            interval = setInterval(function () {
+                count++;
+
+                document.querySelector("#counter").innerHTML =
+                    "Counter: " + count;
+            }, 1000);
+        }
+
+        // clearInterval() 
+        function stopInterval() {
+            clearInterval(interval);
+        }
+
+    </script>
+
+</body>
+
+</html>
